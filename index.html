@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Devon Kim – Apps</title>
+  <title>Bazi – Daily Forecast</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,127 +12,355 @@
       color: #f0f0f0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
+    }
+
+    /* HERO */
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 600px;
-      width: 100%;
+      padding: 100px 20px 80px;
       text-align: center;
+      border-bottom: 1px solid #1a1a1a;
     }
 
-    .developer-name {
-      font-size: 13px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 60px;
-    }
-
-    .app-card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 20px;
-      padding: 40px;
+    .hero-icon {
+      font-size: 72px;
       margin-bottom: 24px;
+      animation: spin 20s linear infinite;
     }
 
-    .app-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .app-name {
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 1px;
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 2px;
       margin-bottom: 8px;
     }
 
-    .app-tagline {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.6;
+    .hero h1 span {
+      color: #c9a96e;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #555;
       margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: #888;
+      line-height: 1.8;
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .badge {
       display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 6px 14px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 6px 16px;
       font-size: 12px;
-      color: #aaa;
-      margin: 4px;
+      color: #888;
+      letter-spacing: 1px;
     }
 
-    .support-section {
-      margin-top: 60px;
-      padding-top: 40px;
+    /* FEATURES */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #eee;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .features { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+    }
+
+    .feature-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ddd;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ELEMENTS */
+    .elements-section {
+      background: #0d0d0d;
       border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .elements-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .element-pill {
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .el-wood  { background: #1a2e1a; color: #6dbf6d; border: 1px solid #2d5c2d; }
+    .el-fire  { background: #2e1a1a; color: #e07070; border: 1px solid #5c2d2d; }
+    .el-earth { background: #2e2a1a; color: #c9a96e; border: 1px solid #5c501a; }
+    .el-metal { background: #252525; color: #c0c0c0; border: 1px solid #404040; }
+    .el-water { background: #1a1e2e; color: #6b8fdb; border: 1px solid #2d3d5c; }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #c9a96e;
+      font-weight: 600;
+    }
+
+    .step-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ddd;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* SUPPORT */
+    .support-section {
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+      padding: 80px 20px;
     }
 
     .support-section h2 {
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #555;
-      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
     .support-section p {
       font-size: 14px;
       color: #666;
       line-height: 1.8;
+      margin-bottom: 20px;
     }
 
     .support-section a {
-      color: #888;
+      color: #c9a96e;
       text-decoration: none;
-      border-bottom: 1px solid #333;
     }
 
     .footer {
-      margin-top: 60px;
+      text-align: center;
+      padding: 30px 20px;
       font-size: 12px;
-      color: #333;
+      color: #2a2a2a;
       letter-spacing: 2px;
+      border-top: 1px solid #111;
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <p class="developer-name">Devon Kim</p>
-
-    <!-- Bazi App -->
-    <div class="app-card">
-      <div class="app-icon">☯</div>
-      <div class="app-name">Bazi – Daily Forecast</div>
-      <p class="app-tagline">
-        Reveal the elemental energy of each moment through the ancient Chinese Four Pillars system. No birthdate needed — just time, elements, and balance.
-      </p>
-      <span class="badge">Apple Watch</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-icon">☯</div>
+    <p class="hero-sub">Ancient Wisdom · Modern Wrist</p>
+    <h1>Bazi – <span>Daily Forecast</span></h1>
+    <p class="hero-desc">
+      Discover the elemental energy flowing through each day and hour — rooted in the ancient Chinese system of BaZi, the Four Pillars of Destiny. No birthdate required.
+    </p>
+    <div class="badge-row">
+      <span class="badge">⌚ Apple Watch</span>
       <span class="badge">watchOS 11+</span>
       <span class="badge">Five Elements</span>
+      <span class="badge">No Birthdate Needed</span>
     </div>
+  </div>
 
-    <!-- Support -->
-    <div class="support-section">
-      <h2>Support</h2>
-      <p>
-        For any questions or feedback, please reach out at<br/>
-        <a href="mailto:devonkim8899@gmail.com">devonkim8899@gmail.com</a>
+  <!-- FEATURES -->
+  <div class="section">
+    <p class="section-label">Features</p>
+    <h2>Everything you need, on your wrist.</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🌅</div>
+        <div class="feature-title">Daily View</div>
+        <div class="feature-desc">Feel the overall elemental energy of the day at a glance. See which element governs today.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗓</div>
+        <div class="feature-title">Weekly Forecast</div>
+        <div class="feature-desc">See how elemental energy shifts across the next 7 days and plan your week accordingly.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Monthly Calendar</div>
+        <div class="feature-desc">Browse the full month with daily pillar readings at a glance.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏱</div>
+        <div class="feature-title">Hour Pillar</div>
+        <div class="feature-desc">The energy shifts every two hours. Stay aware of the current moment's elemental signature throughout your day.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <div class="feature-title">Personal Energy (Pro)</div>
+        <div class="feature-desc">After 30 days of readings, discover which elements appear most in your life — and what that reveals about you.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">100% Private</div>
+        <div class="feature-desc">No account. No network. No birthdate. Everything runs locally on your Apple Watch.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIVE ELEMENTS -->
+  <div class="elements-section">
+    <div class="section">
+      <p class="section-label">Five Elements</p>
+      <h2>The foundation of BaZi.</h2>
+      <div class="elements-grid">
+        <div class="element-pill el-wood">🌿 Wood</div>
+        <div class="element-pill el-fire">🔥 Fire</div>
+        <div class="element-pill el-earth">🌍 Earth</div>
+        <div class="element-pill el-metal">⚙️ Metal</div>
+        <div class="element-pill el-water">💧 Water</div>
+      </div>
+      <p style="margin-top: 32px; font-size: 14px; color: #555; line-height: 1.8;">
+        BaZi teaches that all of time flows through five elemental forces. Each day, each hour carries a unique combination — shaping the energy around us. This app maps that flow in real time.
       </p>
     </div>
-
-    <div class="footer">© 2025 Devon Kim</div>
-
   </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <p class="section-label">How It Works</p>
+    <h2>Rooted in thousands of years of Eastern wisdom.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Four Pillars of Time</h3>
+          <p>BaZi divides time into four pillars — Year, Month, Day, and Hour — each governed by a Heavenly Stem and an Earthly Branch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Real-Time Calculation</h3>
+          <p>The app calculates your current moment's pillars instantly based on the current date and time. No input needed.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Energy Shifts Every 2 Hours</h3>
+          <p>The Hour Pillar changes every two hours throughout the day, reflecting the natural rhythm of elemental energy.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Discover Your Pattern (Pro)</h3>
+          <p>With 30 days of data, uncover which elements dominate your daily readings and gain deeper self-awareness.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="support-section">
+    <h2>Support</h2>
+    <p>For any questions, feedback, or feature requests,<br/>feel free to reach out.</p>
+    <p><a href="mailto:devonkim8899@gmail.com">devonkim8899@gmail.com</a></p>
+  </div>
+
+  <div class="footer">© 2025 Devon Kim · Bazi – Daily Forecast</div>
+
 </body>
 </html>
