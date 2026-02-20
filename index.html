@@ -14,6 +14,32 @@
       min-height: 100vh;
     }
 
+    /* LANGUAGE SWITCHER */
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 14px 24px;
+      border-bottom: 1px solid #1a1a1a;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover, .lang-btn.active {
+      border-color: #c9a96e;
+      color: #c9a96e;
+    }
+
     /* HERO */
     .hero {
       display: flex;
@@ -43,9 +69,7 @@
       margin-bottom: 8px;
     }
 
-    .hero h1 span {
-      color: #c9a96e;
-    }
+    .hero h1 span { color: #c9a96e; }
 
     .hero-sub {
       font-size: 13px;
@@ -81,7 +105,7 @@
       letter-spacing: 1px;
     }
 
-    /* FEATURES */
+    /* SECTIONS */
     .section {
       max-width: 720px;
       margin: 0 auto;
@@ -103,6 +127,7 @@
       color: #eee;
     }
 
+    /* FEATURES */
     .features {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -121,10 +146,7 @@
       padding: 28px;
     }
 
-    .feature-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
 
     .feature-title {
       font-size: 15px;
@@ -167,45 +189,48 @@
     .el-metal { background: #252525; color: #c0c0c0; border: 1px solid #404040; }
     .el-water { background: #1a1e2e; color: #6b8fdb; border: 1px solid #2d3d5c; }
 
-    /* HOW IT WORKS */
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 24px; }
 
-    .step {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
+    .step { display: flex; gap: 20px; align-items: flex-start; }
 
     .step-num {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
+      width: 36px; height: 36px; min-width: 36px;
       border-radius: 50%;
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #c9a96e;
-      font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #c9a96e; font-weight: 600;
     }
 
-    .step-content h3 {
+    .step-content h3 { font-size: 15px; font-weight: 600; color: #ddd; margin-bottom: 6px; }
+    .step-content p  { font-size: 13px; color: #666; line-height: 1.7; }
+
+    /* PRIVACY POLICY */
+    .privacy-section {
+      background: #0d0d0d;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .privacy-block {
+      margin-bottom: 32px;
+    }
+
+    .privacy-block h3 {
       font-size: 15px;
       font-weight: 600;
-      color: #ddd;
-      margin-bottom: 6px;
+      color: #c9a96e;
+      margin-bottom: 10px;
     }
 
-    .step-content p {
+    .privacy-block p, .privacy-block li {
       font-size: 13px;
       color: #666;
-      line-height: 1.7;
+      line-height: 1.8;
+    }
+
+    .privacy-block ul {
+      padding-left: 20px;
     }
 
     /* SUPPORT */
@@ -215,23 +240,9 @@
       padding: 80px 20px;
     }
 
-    .support-section h2 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .support-section p {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    .support-section a {
-      color: #c9a96e;
-      text-decoration: none;
-    }
+    .support-section h2 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .support-section p  { font-size: 14px; color: #666; line-height: 1.8; margin-bottom: 20px; }
+    .support-section a  { color: #c9a96e; text-decoration: none; }
 
     .footer {
       text-align: center;
@@ -241,126 +252,446 @@
       letter-spacing: 2px;
       border-top: 1px solid #111;
     }
+
+    /* NAV TABS */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .nav-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 16px 28px;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+
+    .nav-tab:hover, .nav-tab.active {
+      color: #c9a96e;
+      border-bottom-color: #c9a96e;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
 
+  <!-- LANGUAGE SWITCHER -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+    <button class="lang-btn" onclick="setLang('zh-hans')">简体中文</button>
+    <button class="lang-btn" onclick="setLang('zh-hant')">繁體中文</button>
+  </div>
+
   <!-- HERO -->
   <div class="hero">
     <div class="hero-icon">☯</div>
-    <p class="hero-sub">Ancient Wisdom · Modern Wrist</p>
+    <p class="hero-sub" data-i18n="hero-sub">Ancient Wisdom · Modern Wrist</p>
     <h1>Bazi – <span>Daily Forecast</span></h1>
-    <p class="hero-desc">
+    <p class="hero-desc" data-i18n="hero-desc">
       Discover the elemental energy flowing through each day and hour — rooted in the ancient Chinese system of BaZi, the Four Pillars of Destiny. No birthdate required.
     </p>
     <div class="badge-row">
       <span class="badge">⌚ Apple Watch</span>
       <span class="badge">watchOS 11+</span>
-      <span class="badge">Five Elements</span>
-      <span class="badge">No Birthdate Needed</span>
+      <span class="badge" data-i18n="badge-elements">Five Elements</span>
+      <span class="badge" data-i18n="badge-no-birth">No Birthdate Needed</span>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <div class="section">
-    <p class="section-label">Features</p>
-    <h2>Everything you need, on your wrist.</h2>
-    <div class="features">
-      <div class="feature-card">
-        <div class="feature-icon">🌅</div>
-        <div class="feature-title">Daily View</div>
-        <div class="feature-desc">Feel the overall elemental energy of the day at a glance. See which element governs today.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🗓</div>
-        <div class="feature-title">Weekly Forecast</div>
-        <div class="feature-desc">See how elemental energy shifts across the next 7 days and plan your week accordingly.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📅</div>
-        <div class="feature-title">Monthly Calendar</div>
-        <div class="feature-desc">Browse the full month with daily pillar readings at a glance.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⏱</div>
-        <div class="feature-title">Hour Pillar</div>
-        <div class="feature-desc">The energy shifts every two hours. Stay aware of the current moment's elemental signature throughout your day.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">✨</div>
-        <div class="feature-title">Personal Energy (Pro)</div>
-        <div class="feature-desc">After 30 days of readings, discover which elements appear most in your life — and what that reveals about you.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-title">100% Private</div>
-        <div class="feature-desc">No account. No network. No birthdate. Everything runs locally on your Apple Watch.</div>
-      </div>
-    </div>
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('features')" data-i18n="tab-features">Features</button>
+    <button class="nav-tab" onclick="showTab('privacy')" data-i18n="tab-privacy">Privacy Policy</button>
+    <button class="nav-tab" onclick="showTab('support')" data-i18n="tab-support">Support</button>
   </div>
 
-  <!-- FIVE ELEMENTS -->
-  <div class="elements-section">
+  <!-- TAB: FEATURES -->
+  <div id="tab-features" class="tab-content active">
+
     <div class="section">
-      <p class="section-label">Five Elements</p>
-      <h2>The foundation of BaZi.</h2>
-      <div class="elements-grid">
-        <div class="element-pill el-wood">🌿 Wood</div>
-        <div class="element-pill el-fire">🔥 Fire</div>
-        <div class="element-pill el-earth">🌍 Earth</div>
-        <div class="element-pill el-metal">⚙️ Metal</div>
-        <div class="element-pill el-water">💧 Water</div>
-      </div>
-      <p style="margin-top: 32px; font-size: 14px; color: #555; line-height: 1.8;">
-        BaZi teaches that all of time flows through five elemental forces. Each day, each hour carries a unique combination — shaping the energy around us. This app maps that flow in real time.
-      </p>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div class="section">
-    <p class="section-label">How It Works</p>
-    <h2>Rooted in thousands of years of Eastern wisdom.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h3>Four Pillars of Time</h3>
-          <p>BaZi divides time into four pillars — Year, Month, Day, and Hour — each governed by a Heavenly Stem and an Earthly Branch.</p>
+      <p class="section-label" data-i18n="label-features">Features</p>
+      <h2 data-i18n="features-title">Everything you need, on your wrist.</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🌅</div>
+          <div class="feature-title" data-i18n="f1-title">Daily View</div>
+          <div class="feature-desc" data-i18n="f1-desc">Feel the overall elemental energy of the day at a glance. See which element governs today.</div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h3>Real-Time Calculation</h3>
-          <p>The app calculates your current moment's pillars instantly based on the current date and time. No input needed.</p>
+        <div class="feature-card">
+          <div class="feature-icon">🗓</div>
+          <div class="feature-title" data-i18n="f2-title">Weekly Forecast</div>
+          <div class="feature-desc" data-i18n="f2-desc">See how elemental energy shifts across the next 7 days and plan your week accordingly.</div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h3>Energy Shifts Every 2 Hours</h3>
-          <p>The Hour Pillar changes every two hours throughout the day, reflecting the natural rhythm of elemental energy.</p>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title" data-i18n="f3-title">Monthly Calendar</div>
+          <div class="feature-desc" data-i18n="f3-desc">Browse the full month with daily pillar readings at a glance.</div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h3>Discover Your Pattern (Pro)</h3>
-          <p>With 30 days of data, uncover which elements dominate your daily readings and gain deeper self-awareness.</p>
+        <div class="feature-card">
+          <div class="feature-icon">⏱</div>
+          <div class="feature-title" data-i18n="f4-title">Hour Pillar</div>
+          <div class="feature-desc" data-i18n="f4-desc">The energy shifts every two hours. Stay aware of the current moment's elemental signature throughout your day.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title" data-i18n="f5-title">Personal Energy (Pro)</div>
+          <div class="feature-desc" data-i18n="f5-desc">After 30 days of readings, discover which elements appear most in your life — and what that reveals about you.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title" data-i18n="f6-title">100% Private</div>
+          <div class="feature-desc" data-i18n="f6-desc">No account. No network. No birthdate. Everything runs locally on your Apple Watch.</div>
         </div>
       </div>
     </div>
+
+    <div class="elements-section">
+      <div class="section">
+        <p class="section-label" data-i18n="label-elements">Five Elements</p>
+        <h2 data-i18n="elements-title">The foundation of BaZi.</h2>
+        <div class="elements-grid">
+          <div class="element-pill el-wood" data-i18n="el-wood">🌿 Wood</div>
+          <div class="element-pill el-fire" data-i18n="el-fire">🔥 Fire</div>
+          <div class="element-pill el-earth" data-i18n="el-earth">🌍 Earth</div>
+          <div class="element-pill el-metal" data-i18n="el-metal">⚙️ Metal</div>
+          <div class="element-pill el-water" data-i18n="el-water">💧 Water</div>
+        </div>
+        <p style="margin-top:32px;font-size:14px;color:#555;line-height:1.8;" data-i18n="elements-desc">
+          BaZi teaches that all of time flows through five elemental forces. Each day, each hour carries a unique combination — shaping the energy around us. This app maps that flow in real time.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label" data-i18n="label-how">How It Works</p>
+      <h2 data-i18n="how-title">Rooted in thousands of years of Eastern wisdom.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3 data-i18n="s1-title">Four Pillars of Time</h3>
+            <p data-i18n="s1-desc">BaZi divides time into four pillars — Year, Month, Day, and Hour — each governed by a Heavenly Stem and an Earthly Branch.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3 data-i18n="s2-title">Real-Time Calculation</h3>
+            <p data-i18n="s2-desc">The app calculates your current moment's pillars instantly based on the current date and time. No input needed.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3 data-i18n="s3-title">Energy Shifts Every 2 Hours</h3>
+            <p data-i18n="s3-desc">The Hour Pillar changes every two hours throughout the day, reflecting the natural rhythm of elemental energy.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3 data-i18n="s4-title">Discover Your Pattern (Pro)</h3>
+            <p data-i18n="s4-desc">With 30 days of data, uncover which elements dominate your daily readings and gain deeper self-awareness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- SUPPORT -->
-  <div class="support-section">
-    <h2>Support</h2>
-    <p>For any questions, feedback, or feature requests,<br/>feel free to reach out.</p>
-    <p><a href="mailto:devonkim8899@gmail.com">devonkim8899@gmail.com</a></p>
+  <!-- TAB: PRIVACY POLICY -->
+  <div id="tab-privacy" class="tab-content">
+    <div class="privacy-section">
+      <div class="section">
+        <p class="section-label">Privacy Policy</p>
+        <h2 data-i18n="privacy-title">Your privacy is fully protected.</h2>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp1-title">1. Data We Collect</h3>
+          <p data-i18n="pp1-desc">Bazi – Daily Forecast does not collect any personal data. The app does not require an account, email address, or birthdate. All calculations are performed locally on your Apple Watch and no data is transmitted to external servers.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp2-title">2. Location Data</h3>
+          <p data-i18n="pp2-desc">The app may request access to your approximate location solely to detect your current timezone for accurate time-based calculations while traveling. Location data is never stored, shared, or transmitted.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp3-title">3. In-App Purchase</h3>
+          <p data-i18n="pp3-desc">Bazi – Daily Forecast offers an optional in-app purchase to unlock Pro features. All payment processing is handled entirely by Apple. We do not collect or store any payment information.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp4-title">4. Third-Party Services</h3>
+          <p data-i18n="pp4-desc">The app does not integrate any third-party analytics, advertising SDKs, or tracking tools. We do not share any data with third parties.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp5-title">5. Data Retention</h3>
+          <p data-i18n="pp5-desc">Any data generated by the app (such as your 30-day reading history for Pro features) is stored locally on your device only. Deleting the app removes all associated data permanently.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp6-title">6. Children's Privacy</h3>
+          <p data-i18n="pp6-desc">This app does not knowingly collect information from children under 13. The app contains no advertising and no data collection of any kind.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp7-title">7. Changes to This Policy</h3>
+          <p data-i18n="pp7-desc">We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date.</p>
+        </div>
+
+        <div class="privacy-block">
+          <h3 data-i18n="pp8-title">8. Contact</h3>
+          <p>For any privacy-related questions, please contact us at <a href="mailto:support@moduxis.com" style="color:#c9a96e;">support@moduxis.com</a></p>
+        </div>
+
+        <p style="font-size:12px;color:#333;margin-top:40px;" data-i18n="pp-effective">Effective Date: February 19, 2025</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: SUPPORT -->
+  <div id="tab-support" class="tab-content">
+    <div class="support-section">
+      <h2 data-i18n="support-title">Support</h2>
+      <p data-i18n="support-desc">For any questions, feedback, or feature requests,<br/>feel free to reach out.</p>
+      <p><a href="mailto:support@moduxis.com">support@moduxis.com</a></p>
+    </div>
   </div>
 
   <div class="footer">© 2025 Devon Kim · Bazi – Daily Forecast</div>
+
+  <script>
+    // ── i18n translations ──────────────────────────────────────────────
+    const translations = {
+      en: {
+        "hero-sub": "Ancient Wisdom · Modern Wrist",
+        "hero-desc": "Discover the elemental energy flowing through each day and hour — rooted in the ancient Chinese system of BaZi, the Four Pillars of Destiny. No birthdate required.",
+        "badge-elements": "Five Elements",
+        "badge-no-birth": "No Birthdate Needed",
+        "tab-features": "Features",
+        "tab-privacy": "Privacy Policy",
+        "tab-support": "Support",
+        "label-features": "Features",
+        "features-title": "Everything you need, on your wrist.",
+        "f1-title": "Daily View", "f1-desc": "Feel the overall elemental energy of the day at a glance. See which element governs today.",
+        "f2-title": "Weekly Forecast", "f2-desc": "See how elemental energy shifts across the next 7 days and plan your week accordingly.",
+        "f3-title": "Monthly Calendar", "f3-desc": "Browse the full month with daily pillar readings at a glance.",
+        "f4-title": "Hour Pillar", "f4-desc": "The energy shifts every two hours. Stay aware of the current moment's elemental signature throughout your day.",
+        "f5-title": "Personal Energy (Pro)", "f5-desc": "After 30 days of readings, discover which elements appear most in your life — and what that reveals about you.",
+        "f6-title": "100% Private", "f6-desc": "No account. No network. No birthdate. Everything runs locally on your Apple Watch.",
+        "label-elements": "Five Elements",
+        "elements-title": "The foundation of BaZi.",
+        "el-wood": "🌿 Wood", "el-fire": "🔥 Fire", "el-earth": "🌍 Earth", "el-metal": "⚙️ Metal", "el-water": "💧 Water",
+        "elements-desc": "BaZi teaches that all of time flows through five elemental forces. Each day, each hour carries a unique combination — shaping the energy around us.",
+        "label-how": "How It Works",
+        "how-title": "Rooted in thousands of years of Eastern wisdom.",
+        "s1-title": "Four Pillars of Time", "s1-desc": "BaZi divides time into four pillars — Year, Month, Day, and Hour — each governed by a Heavenly Stem and an Earthly Branch.",
+        "s2-title": "Real-Time Calculation", "s2-desc": "The app calculates your current moment's pillars instantly based on the current date and time. No input needed.",
+        "s3-title": "Energy Shifts Every 2 Hours", "s3-desc": "The Hour Pillar changes every two hours throughout the day, reflecting the natural rhythm of elemental energy.",
+        "s4-title": "Discover Your Pattern (Pro)", "s4-desc": "With 30 days of data, uncover which elements dominate your daily readings and gain deeper self-awareness.",
+        "privacy-title": "Your privacy is fully protected.",
+        "pp1-title": "1. Data We Collect", "pp1-desc": "Bazi – Daily Forecast does not collect any personal data. The app does not require an account, email address, or birthdate. All calculations are performed locally on your Apple Watch and no data is transmitted to external servers.",
+        "pp2-title": "2. Location Data", "pp2-desc": "The app may request access to your approximate location solely to detect your current timezone for accurate time-based calculations while traveling. Location data is never stored, shared, or transmitted.",
+        "pp3-title": "3. In-App Purchase", "pp3-desc": "Bazi – Daily Forecast offers an optional in-app purchase to unlock Pro features. All payment processing is handled entirely by Apple. We do not collect or store any payment information.",
+        "pp4-title": "4. Third-Party Services", "pp4-desc": "The app does not integrate any third-party analytics, advertising SDKs, or tracking tools. We do not share any data with third parties.",
+        "pp5-title": "5. Data Retention", "pp5-desc": "Any data generated by the app (such as your 30-day reading history for Pro features) is stored locally on your device only. Deleting the app removes all associated data permanently.",
+        "pp6-title": "6. Children's Privacy", "pp6-desc": "This app does not knowingly collect information from children under 13. The app contains no advertising and no data collection of any kind.",
+        "pp7-title": "7. Changes to This Policy", "pp7-desc": "We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date.",
+        "pp8-title": "8. Contact",
+        "pp-effective": "Effective Date: February 19, 2025",
+        "support-title": "Support",
+        "support-desc": "For any questions, feedback, or feature requests,<br/>feel free to reach out.",
+      },
+      ko: {
+        "hero-sub": "고대의 지혜 · 현대의 손목",
+        "hero-desc": "사주팔자(四柱八字)의 오행 에너지를 매일, 매 시간 손목에서 확인하세요. 생년월일 불필요.",
+        "badge-elements": "오행",
+        "badge-no-birth": "생년월일 불필요",
+        "tab-features": "기능",
+        "tab-privacy": "개인정보 처리방침",
+        "tab-support": "지원",
+        "label-features": "기능",
+        "features-title": "필요한 모든 것을 손목에서.",
+        "f1-title": "일간 뷰", "f1-desc": "오늘의 전반적인 오행 기운을 한눈에 확인하세요.",
+        "f2-title": "주간 예보", "f2-desc": "7일간의 오행 변화를 미리 살펴보고 한 주를 계획하세요.",
+        "f3-title": "월간 달력", "f3-desc": "한 달 전체의 일주(日柱)를 달력으로 확인하세요.",
+        "f4-title": "시주", "f4-desc": "시주는 2시간마다 바뀝니다. 하루 동안 매 순간의 오행 기운을 파악하세요.",
+        "f5-title": "나의 기운 분석 (Pro)", "f5-desc": "30일간의 데이터를 통해 내 삶에 자주 나타나는 오행이 무엇인지 발견하세요.",
+        "f6-title": "완전한 프라이버시", "f6-desc": "계정 없음. 네트워크 없음. 생년월일 없음. 모든 계산은 Apple Watch에서 로컬로 실행됩니다.",
+        "label-elements": "오행",
+        "elements-title": "사주의 근간, 오행.",
+        "el-wood": "🌿 목(木)", "el-fire": "🔥 화(火)", "el-earth": "🌍 토(土)", "el-metal": "⚙️ 금(金)", "el-water": "💧 수(水)",
+        "elements-desc": "사주는 모든 시간이 다섯 가지 오행의 흐름으로 이루어진다고 가르칩니다. 매일, 매 시간마다 고유한 오행 조합이 우리를 둘러싼 기운을 만들어냅니다.",
+        "label-how": "작동 원리",
+        "how-title": "수천 년 동양 지혜의 결정체.",
+        "s1-title": "시간의 사주", "s1-desc": "사주는 시간을 년주, 월주, 일주, 시주의 네 기둥으로 나누며, 각각 천간과 지지로 구성됩니다.",
+        "s2-title": "실시간 계산", "s2-desc": "현재 날짜와 시간을 기반으로 사주를 즉시 계산합니다. 별도 입력이 필요 없습니다.",
+        "s3-title": "2시간마다 바뀌는 시주", "s3-desc": "시주는 하루 동안 2시간 간격으로 변화하며, 자연스러운 오행 에너지의 리듬을 반영합니다.",
+        "s4-title": "나의 패턴 발견 (Pro)", "s4-desc": "30일간의 데이터로 내 일간 기록에서 어떤 오행이 지배적인지 파악하고 더 깊은 자기 이해를 얻으세요.",
+        "privacy-title": "개인정보는 완벽하게 보호됩니다.",
+        "pp1-title": "1. 수집하는 데이터", "pp1-desc": "Bazi – Daily Forecast는 어떠한 개인 데이터도 수집하지 않습니다. 계정, 이메일, 생년월일이 필요 없으며 모든 계산은 Apple Watch에서 로컬로 처리됩니다.",
+        "pp2-title": "2. 위치 데이터", "pp2-desc": "여행 중 정확한 시간대 감지를 위해 대략적인 위치 접근을 요청할 수 있습니다. 위치 데이터는 저장, 공유, 전송되지 않습니다.",
+        "pp3-title": "3. 인앱 구매", "pp3-desc": "Pro 기능 잠금 해제를 위한 선택적 인앱 구매를 제공합니다. 모든 결제는 Apple이 처리하며, 당사는 결제 정보를 수집하거나 저장하지 않습니다.",
+        "pp4-title": "4. 제3자 서비스", "pp4-desc": "앱에는 제3자 분석 도구, 광고 SDK 또는 추적 도구가 포함되어 있지 않습니다.",
+        "pp5-title": "5. 데이터 보존", "pp5-desc": "앱이 생성하는 데이터(30일 기록 등)는 기기에만 로컬 저장됩니다. 앱 삭제 시 모든 데이터가 영구 삭제됩니다.",
+        "pp6-title": "6. 아동 개인정보", "pp6-desc": "당사는 13세 미만 아동의 정보를 의도적으로 수집하지 않습니다.",
+        "pp7-title": "7. 정책 변경", "pp7-desc": "개인정보 처리방침은 수시로 업데이트될 수 있으며, 변경 사항은 이 페이지에 반영됩니다.",
+        "pp8-title": "8. 문의",
+        "pp-effective": "시행일: 2025년 2월 19일",
+        "support-title": "고객 지원",
+        "support-desc": "문의 사항, 피드백, 기능 요청이 있으시면 언제든지 연락해 주세요.",
+      },
+      ja: {
+        "hero-sub": "古代の知恵 · 現代の手首",
+        "hero-desc": "四柱推命（BaZi）の五行エネルギーを、毎日・毎時間、手首で確認しましょう。生年月日は不要です。",
+        "badge-elements": "五行",
+        "badge-no-birth": "生年月日不要",
+        "tab-features": "機能",
+        "tab-privacy": "プライバシーポリシー",
+        "tab-support": "サポート",
+        "label-features": "機能",
+        "features-title": "必要なすべてを、手首に。",
+        "f1-title": "デイリービュー", "f1-desc": "今日の五行エネルギーをひと目で確認。",
+        "f2-title": "週間予報", "f2-desc": "7日間のエネルギー変化を把握して、週の計画を立てましょう。",
+        "f3-title": "月間カレンダー", "f3-desc": "月全体の日柱をカレンダーで確認できます。",
+        "f4-title": "時柱", "f4-desc": "時柱は2時間ごとに変わります。一日を通じて、その瞬間の五行を把握しましょう。",
+        "f5-title": "自分のエネルギー分析（Pro）", "f5-desc": "30日間のデータで、自分の生活に多く現れる五行を発見しましょう。",
+        "f6-title": "完全なプライバシー", "f6-desc": "アカウント不要。ネットワーク不要。生年月日不要。すべてApple Watch上でローカル処理。",
+        "label-elements": "五行",
+        "elements-title": "四柱推命の基盤、五行。",
+        "el-wood": "🌿 木", "el-fire": "🔥 火", "el-earth": "🌍 土", "el-metal": "⚙️ 金", "el-water": "💧 水",
+        "elements-desc": "四柱推命では、すべての時間が五つの元素の流れで構成されていると教えます。毎日・毎時間、固有の組み合わせが私たちを取り巻くエネルギーを作り出します。",
+        "label-how": "仕組み",
+        "how-title": "数千年の東洋の知恵に根ざして。",
+        "s1-title": "時間の四柱", "s1-desc": "四柱推命は時間を年柱、月柱、日柱、時柱の四つの柱に分け、それぞれ天干と地支で構成されます。",
+        "s2-title": "リアルタイム計算", "s2-desc": "現在の日時に基づいて四柱を即時計算します。入力は不要です。",
+        "s3-title": "2時間ごとに変わるエネルギー", "s3-desc": "時柱は一日を通じて2時間ごとに変化し、五行エネルギーの自然なリズムを反映します。",
+        "s4-title": "パターン発見（Pro）", "s4-desc": "30日間のデータで、自分の日々の記録にどの五行が多いかを把握し、より深い自己理解を得ましょう。",
+        "privacy-title": "プライバシーは完全に保護されます。",
+        "pp1-title": "1. 収集するデータ", "pp1-desc": "Bazi – Daily Forecastは個人データを一切収集しません。アカウント、メール、生年月日は不要で、すべての計算はApple Watch上でローカルに処理されます。",
+        "pp2-title": "2. 位置情報", "pp2-desc": "旅行中の正確なタイムゾーン検出のため、おおよその位置情報へのアクセスを要求することがあります。位置データは保存・共有・送信されません。",
+        "pp3-title": "3. アプリ内購入", "pp3-desc": "Pro機能のロック解除のための任意のアプリ内購入を提供しています。すべての決済はAppleが処理し、当社は決済情報を収集・保存しません。",
+        "pp4-title": "4. サードパーティサービス", "pp4-desc": "アプリにはサードパーティの分析ツール、広告SDK、トラッキングツールは含まれていません。",
+        "pp5-title": "5. データ保持", "pp5-desc": "アプリが生成するデータ（30日間の履歴など）はデバイス上にのみ保存されます。アプリを削除するとすべてのデータが完全に削除されます。",
+        "pp6-title": "6. 子どものプライバシー", "pp6-desc": "当社は13歳未満の子どもから意図的に情報を収集しません。",
+        "pp7-title": "7. ポリシーの変更", "pp7-desc": "プライバシーポリシーは随時更新される場合があり、変更はこのページに反映されます。",
+        "pp8-title": "8. お問い合わせ",
+        "pp-effective": "発効日：2025年2月19日",
+        "support-title": "サポート",
+        "support-desc": "ご質問、フィードバック、機能リクエストがあればお気軽にご連絡ください。",
+      },
+      "zh-hans": {
+        "hero-sub": "古老智慧 · 现代手腕",
+        "hero-desc": "通过古老的中国八字命理，每天每两小时感受五行能量的流动。无需生日。",
+        "badge-elements": "五行",
+        "badge-no-birth": "无需生日",
+        "tab-features": "功能",
+        "tab-privacy": "隐私政策",
+        "tab-support": "支持",
+        "label-features": "功能",
+        "features-title": "一切所需，尽在手腕。",
+        "f1-title": "日视图", "f1-desc": "一眼感受今日五行能量，了解今天由哪种元素主导。",
+        "f2-title": "周预报", "f2-desc": "查看未来7天的能量变化，合理规划您的一周。",
+        "f3-title": "月历", "f3-desc": "浏览整月的日柱读数。",
+        "f4-title": "时柱", "f4-desc": "时柱每两小时变换一次，全天感知当前时刻的五行特征。",
+        "f5-title": "个人能量分析（Pro）", "f5-desc": "30天数据后，发现您生活中最常出现的五行元素及其含义。",
+        "f6-title": "完全隐私", "f6-desc": "无账户。无网络。无生日。一切在Apple Watch本地运行。",
+        "label-elements": "五行",
+        "elements-title": "八字的基础，五行。",
+        "el-wood": "🌿 木", "el-fire": "🔥 火", "el-earth": "🌍 土", "el-metal": "⚙️ 金", "el-water": "💧 水",
+        "elements-desc": "八字命理认为，所有时间都流经五种元素力量。每天每小时都携带独特的组合，塑造着我们周围的能量。",
+        "label-how": "工作原理",
+        "how-title": "根植于数千年东方智慧。",
+        "s1-title": "时间四柱", "s1-desc": "八字将时间分为年、月、日、时四柱，每柱由天干和地支组成。",
+        "s2-title": "实时计算", "s2-desc": "根据当前日期和时间即时计算四柱，无需任何输入。",
+        "s3-title": "每两小时能量变换", "s3-desc": "时柱每两小时变换一次，反映五行能量的自然节律。",
+        "s4-title": "发现您的模式（Pro）", "s4-desc": "通过30天数据，了解哪些元素主导您的日常读数，获得更深的自我认知。",
+        "privacy-title": "您的隐私受到完全保护。",
+        "pp1-title": "1. 我们收集的数据", "pp1-desc": "Bazi – Daily Forecast不收集任何个人数据。无需账户、电子邮件或生日。所有计算在Apple Watch本地执行，不向外部服务器传输数据。",
+        "pp2-title": "2. 位置数据", "pp2-desc": "应用可能请求访问您的大致位置，仅用于旅行时检测时区。位置数据从不存储、共享或传输。",
+        "pp3-title": "3. 应用内购买", "pp3-desc": "提供可选的应用内购买以解锁Pro功能。所有支付由Apple处理，我们不收集或存储任何支付信息。",
+        "pp4-title": "4. 第三方服务", "pp4-desc": "应用不集成任何第三方分析工具、广告SDK或跟踪工具，不与第三方共享任何数据。",
+        "pp5-title": "5. 数据保留", "pp5-desc": "应用生成的数据（如30天历史记录）仅存储在您的设备上。删除应用将永久删除所有相关数据。",
+        "pp6-title": "6. 儿童隐私", "pp6-desc": "我们不会故意收集13岁以下儿童的信息。",
+        "pp7-title": "7. 政策变更", "pp7-desc": "我们可能会不时更新本隐私政策，任何变更将在本页面反映。",
+        "pp8-title": "8. 联系方式",
+        "pp-effective": "生效日期：2025年2月19日",
+        "support-title": "支持",
+        "support-desc": "如有任何问题、反馈或功能请求，请随时联系我们。",
+      },
+      "zh-hant": {
+        "hero-sub": "古老智慧 · 現代手腕",
+        "hero-desc": "透過古老的中國八字命理，每天每兩小時感受五行能量的流動。無需生日。",
+        "badge-elements": "五行",
+        "badge-no-birth": "無需生日",
+        "tab-features": "功能",
+        "tab-privacy": "隱私政策",
+        "tab-support": "支援",
+        "label-features": "功能",
+        "features-title": "一切所需，盡在手腕。",
+        "f1-title": "日視圖", "f1-desc": "一眼感受今日五行能量，了解今天由哪種元素主導。",
+        "f2-title": "週預報", "f2-desc": "查看未來7天的能量變化，合理規劃您的一週。",
+        "f3-title": "月曆", "f3-desc": "瀏覽整月的日柱讀數。",
+        "f4-title": "時柱", "f4-desc": "時柱每兩小時變換一次，全天感知當前時刻的五行特徵。",
+        "f5-title": "個人能量分析（Pro）", "f5-desc": "30天數據後，發現您生活中最常出現的五行元素及其含義。",
+        "f6-title": "完全隱私", "f6-desc": "無帳戶。無網路。無生日。一切在Apple Watch本地運行。",
+        "label-elements": "五行",
+        "elements-title": "八字的基礎，五行。",
+        "el-wood": "🌿 木", "el-fire": "🔥 火", "el-earth": "🌍 土", "el-metal": "⚙️ 金", "el-water": "💧 水",
+        "elements-desc": "八字命理認為，所有時間都流經五種元素力量。每天每小時都攜帶獨特的組合，塑造著我們周圍的能量。",
+        "label-how": "運作原理",
+        "how-title": "根植於數千年東方智慧。",
+        "s1-title": "時間四柱", "s1-desc": "八字將時間分為年、月、日、時四柱，每柱由天干和地支組成。",
+        "s2-title": "實時計算", "s2-desc": "根據當前日期和時間即時計算四柱，無需任何輸入。",
+        "s3-title": "每兩小時能量變換", "s3-desc": "時柱每兩小時變換一次，反映五行能量的自然節律。",
+        "s4-title": "發現您的模式（Pro）", "s4-desc": "透過30天數據，了解哪些元素主導您的日常讀數，獲得更深的自我認知。",
+        "privacy-title": "您的隱私受到完全保護。",
+        "pp1-title": "1. 我們收集的數據", "pp1-desc": "Bazi – Daily Forecast不收集任何個人數據。無需帳戶、電子郵件或生日。所有計算在Apple Watch本地執行，不向外部伺服器傳輸數據。",
+        "pp2-title": "2. 位置數據", "pp2-desc": "應用可能請求訪問您的大致位置，僅用於旅行時檢測時區。位置數據從不存儲、共享或傳輸。",
+        "pp3-title": "3. 應用內購買", "pp3-desc": "提供可選的應用內購買以解鎖Pro功能。所有支付由Apple處理，我們不收集或存儲任何支付信息。",
+        "pp4-title": "4. 第三方服務", "pp4-desc": "應用不整合任何第三方分析工具、廣告SDK或追蹤工具，不與第三方共享任何數據。",
+        "pp5-title": "5. 數據保留", "pp5-desc": "應用生成的數據（如30天歷史記錄）僅存儲在您的設備上。刪除應用將永久刪除所有相關數據。",
+        "pp6-title": "6. 兒童隱私", "pp6-desc": "我們不會故意收集13歲以下兒童的信息。",
+        "pp7-title": "7. 政策變更", "pp7-desc": "我們可能會不時更新本隱私政策，任何變更將在本頁面反映。",
+        "pp8-title": "8. 聯絡方式",
+        "pp-effective": "生效日期：2025年2月19日",
+        "support-title": "支援",
+        "support-desc": "如有任何問題、意見或功能請求，請隨時聯絡我們。",
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerHTML = t[key];
+      });
+    }
+
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
