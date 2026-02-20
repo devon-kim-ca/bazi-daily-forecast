@@ -674,15 +674,20 @@
 
     let currentLang = 'en';
 
-    function setLang(lang) {
+    function applyLang(lang) {
       currentLang = lang;
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
       const t = translations[lang];
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) el.innerHTML = t[key];
       });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick') === `setLang('${lang}')`);
+      });
+    }
+
+    function setLang(lang) {
+      applyLang(lang);
     }
 
     function showTab(tab) {
@@ -691,6 +696,17 @@
       document.getElementById('tab-' + tab).classList.add('active');
       event.target.classList.add('active');
     }
+
+    // ── 시스템 언어 자동 감지 ──────────────────────────────────────────────
+    (function detectLang() {
+      const sysLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      let detected = 'en';
+      if (sysLang.startsWith('ko')) detected = 'ko';
+      else if (sysLang.startsWith('ja')) detected = 'ja';
+      else if (sysLang === 'zh-hant' || sysLang === 'zh-tw' || sysLang === 'zh-hk') detected = 'zh-hant';
+      else if (sysLang.startsWith('zh')) detected = 'zh-hans';
+      applyLang(detected);
+    })();
   </script>
 
 </body>
